@@ -16,21 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecommerce.inventoryservice.model.Inventory;
 import com.ecommerce.inventoryservice.service.IInventoryMgmtService;
 
-//@RestController
-//@RequestMapping("/inventory-api")
-//public class InventoryController {
-//	 private static final Logger log = LoggerFactory.getLogger(InventoryController.class);
-//	@Autowired
-//	private IInventoryMgmtService service;
-//    @GetMapping("/checkStock/{productCode}/{quantity}")
-//    public ResponseEntity<Boolean> checkStock(@PathVariable("productCode") String productCode,
-//                                              @PathVariable("quantity") int quantity) {
-//    	 log.info("API call: checkStock for productCode={} quantity={}", productCode, quantity);
-//        Boolean checkQuantity = service.isInStock(productCode, quantity);
-//        log.info("Stock check result for productCode={} → {}", productCode, checkQuantity);
-//        return new ResponseEntity<>(checkQuantity, HttpStatus.ACCEPTED); 
-//    }
-//}
 
 
 @RestController
@@ -40,19 +25,19 @@ public class InventoryController {
     @Autowired
     private IInventoryMgmtService service;
 
-    // ✅ Add single stock
+    //  Add single stock
     @PostMapping("/add")
     public ResponseEntity<Inventory> addStock(@RequestBody Inventory inventory) {
         return ResponseEntity.ok(service.addStock(inventory));
     }
 
-    // ✅ Bulk insert
+    //  Bulk insert
     @PostMapping("/bulk")
     public ResponseEntity<List<Inventory>> addMultipleStocks(@RequestBody List<Inventory> inventories) {
         return ResponseEntity.ok(service.addMultipleStocks(inventories));
     }
 
-    // ✅ Update
+    //  Update
     @PutMapping("/update/{productCode}/{quantity}")
     public ResponseEntity<Inventory> updateStock(
             @PathVariable("productCode") String productCode,
@@ -61,7 +46,7 @@ public class InventoryController {
         return ResponseEntity.ok(service.updateStock(productCode, quantity));
     }
 
-    // ✅ Delete
+    //  Delete
     @DeleteMapping("/delete/{productCode}")
     public ResponseEntity<String> deleteStock(
             @PathVariable("productCode") String productCode) {
@@ -70,7 +55,7 @@ public class InventoryController {
         return ResponseEntity.ok("Deleted successfully");
     }
 
-    // ✅ Get single
+    //  Get single
     @GetMapping("/{productCode}")
     public ResponseEntity<Inventory> getStock(
             @PathVariable("productCode") String productCode) {
@@ -78,13 +63,13 @@ public class InventoryController {
         return ResponseEntity.ok(service.getStock(productCode));
     }
 
-    // ✅ Get all
+    //  Get all
     @GetMapping("/all")
     public ResponseEntity<List<Inventory>> getAllStocks() {
         return ResponseEntity.ok(service.getAllStocks());
     }
 
-    // ✅ Check stock
+   
     @GetMapping("/check/{productCode}/{quantity}")
     public ResponseEntity<Boolean> checkStock(
             @PathVariable("productCode") String productCode,
@@ -93,7 +78,7 @@ public class InventoryController {
         return ResponseEntity.ok(service.isInStock(productCode, quantity));
     }
 
-    // ✅ Reserve stock
+    
     @PostMapping("/reserve/{productCode}/{quantity}")
     public ResponseEntity<String> reserve(
             @PathVariable("productCode") String productCode,
