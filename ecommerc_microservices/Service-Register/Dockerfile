@@ -1,14 +1,10 @@
-# Use lightweight Java 17 image
-FROM eclipse-temurin:17-jdk-alpine
-
-# Set working directory inside container
+FROM maven:3.9.4-eclipse-temurin-17 AS build
 WORKDIR /app
-
-# Copy jar from target folder
-COPY target/*.jar app.jar
-
-# Expose Eureka port
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8761
-
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
