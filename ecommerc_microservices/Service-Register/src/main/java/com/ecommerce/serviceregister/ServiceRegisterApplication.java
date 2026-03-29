@@ -19,6 +19,7 @@ public class ServiceRegisterApplication {
         try {
             SpringApplication.run(ServiceRegisterApplication.class, args);
             logger.info("Eureka Service Registry started successfully.");
+            System.out.println("Eureka Server is running");
         } catch (Exception e) {
             logger.error("Eureka Server failed to start due to error: ", e);
         }

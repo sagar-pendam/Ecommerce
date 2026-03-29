@@ -58,10 +58,7 @@ public class JWTService {
         return Keys.hmacShaKeyFor(io.jsonwebtoken.io.Decoders.BASE64.decode(secretkey));
     }
 
-//    public String extractUserName(String token) {
-//    	log.info("Extracting username from token...");
-//        return extractClaim(token, Claims::getSubject);
-//    }
+
 
     public boolean validateToken(String token) {
     	log.info("Validating JWT token...");

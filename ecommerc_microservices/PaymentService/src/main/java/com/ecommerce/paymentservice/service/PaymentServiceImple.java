@@ -132,26 +132,7 @@ public class PaymentServiceImple implements PaymentService {
                     return null;
                 });
     }
-//    @Override
-//    public void refundPayment(Long orderId, Double amount) {
-//    	log.info("Initiating refund of ₹{} for order {}", amount, orderId);
-//        System.out.println("Refunding ₹" + amount + " for order " + orderId);
-//
-//        // Find the original payment record
-//        Payment payment = paymentRepository.findByOrderId(orderId)
-//                .orElseThrow(() -> new RuntimeException("Payment not found for order: " + orderId));
-//
-//        // Update payment status to REFUNDED
-//        payment.setStatus("REFUNDED");
-//
-//        // Generate a refund transaction ID
-//        payment.setTransactionId(UUID.randomUUID().toString());
-//        payment.setCreatedAt(LocalDateTime.now());
-//
-//        paymentRepository.save(payment);
-//        log.info("Refund completed for order {} → transactionId: {}", orderId, payment.getTransactionId());
-//        System.out.println("Refund completed for order " + orderId + ", transactionId: " + payment.getTransactionId());
-//    }
+
     @Override
     public void refundPayment(Long orderId, Double amount) {
 
