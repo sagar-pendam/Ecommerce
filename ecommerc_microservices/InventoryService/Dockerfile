@@ -1,11 +1,18 @@
 ﻿FROM maven:3.9.4-eclipse-temurin-17 AS build
 WORKDIR /app
+
+# Copy parent pom.xml first
 COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
+
+# Copy the specific service
+COPY InventoryService/pom.xml InventoryService/pom.xml
+COPY InventoryService/src InventoryService/src
+
+# Build only the specific service module
+RUN mvn clean package -pl InventoryService -am -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/InventoryService/target/*.jar app.jar
 EXPOSE 8085
 ENTRYPOINT ["java", "-jar", "app.jar"]
