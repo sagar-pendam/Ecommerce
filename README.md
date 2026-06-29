@@ -226,7 +226,7 @@ Examples:
 **Sagar Pendam**
 
 * Email: [pendamsagar3@gmail.com](mailto:pendamsagar3@gmail.com)
-* GitHub: https://github.com/your-github-username
+* GitHub: https://github.com/sagar-pendam
 
 ---
 
